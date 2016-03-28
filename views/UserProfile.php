@@ -49,22 +49,6 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="iconbox">
-                <div class="iconbox-icon" data-bind="html : roleIcon"></div>
-                <div class="iconbox-text">
-                    <p>Your Role:</p>
-                    <p data-bind="text: role"></p>
-                    <p>Click to request to upgrade your role.</p>
-                </div>
-                <button type="button" class="btn small-red-button" data-bind="enable: pendingRequestType() == null, click: openRequestModal">Upgrade Account</button>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="iconbox" data-bind="template : requestTemplate">
-
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="iconbox">
                 <div class="iconbox-icon">
                     <span class="fa fa-lock"></span>
                 </div>

@@ -90,6 +90,10 @@
                                 <select id="user-degree" type="text" class="form-input" placeholder="Degree" data-bind="options: degrees, value: degree" name="degree"></select>
                             </div>
                             <div class="form-field">
+                                <label for="user-faculty"><span class="hidden">Degree</span></label>
+                                <select id="user-faculty" type="text" class="form-input" placeholder="Faculty" data-bind="options: faculties, value: faculty" name="faculty"></select>
+                            </div>
+                            <div class="form-field">
                                 <label for="user-role"><span class="hidden">Role</span></label>
                                 <select id="user-role" type="text" class="form-input" placeholder="Role" data-bind="options: roles, value: role" required="required" name="role"></select>
                             </div>

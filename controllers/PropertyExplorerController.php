@@ -50,9 +50,9 @@ if ($data['action'] == "searchByAvailability"){
 }
 
 if ($data['action'] == "viewProperty"){
-    $query = "SELECT address, nightlyRate FROM property WHERE property.ID = ?";
+    $query = "SELECT * FROM property WHERE property.address = ?";
     $stmt = $con->prepare($query);
-    $stmt->bind_param("s", $data['propertyID']);
+    $stmt->bind_param("s", $data['address']);
     $stmt->execute();
     $propertyResult = $stmt->get_result();
 

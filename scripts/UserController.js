@@ -32,7 +32,6 @@ function initTable(){
         })
     ).done(function(data) {
         var data = JSON.parse(data);
-        console.log(data);
         table = $("#user-table").DataTable({
             "dom": '<"toolbar">frt<"bottom"ilp><"clear">',
             'order': [[1, 'asc']],
@@ -142,8 +141,9 @@ function refreshTable(){
             data: JSON.stringify({action: "viewAllUsers"})
         })
     ).done(function (data) {
+        var d = JSON.parse(data);
         table.clear();
-        table.rows.add(data);
+        table.rows.add(d);
         table.draw();
     });
 }
@@ -157,7 +157,9 @@ function setUserViewModel(rowData) {
         userVm.degree("");
         userVm.gradYear("");
         userVm.role("");
+        userVm.degree("");
         userVm.createdDate("");
+        userVm.faculty("");
     }
     else {
         userVm.id(rowData.ID);
@@ -166,7 +168,9 @@ function setUserViewModel(rowData) {
         userVm.email(rowData.email);
         userVm.degree(rowData.degree);
         userVm.gradYear(rowData.gradYear);
-        userVm.role(rowData.roleName);
+        userVm.role(rowData.role);
+        userVm.degree(rowData.degree);
+        userVm.faculty(rowData.faculty);
         userVm.createdDate(rowData.createdDate);
     }
 }
@@ -178,6 +182,7 @@ function UserViewModel(){
     self.selectedRole = ko.observable();
     self.roles = ko.observableArray(['Consumer', 'Supplier', 'Administrator']);
     self.degrees = ko.observableArray(['BCMP', 'BSc', 'BEng', 'BComm', 'Msc', 'PhD']);
+    self.faculties = ko.observableArray(['Computing', 'Law', 'Commerce', 'Science']);
 
     // User Modal Variables
     self.id = ko.observable();
@@ -186,6 +191,7 @@ function UserViewModel(){
     self.email = ko.observable();
     self.gradYear = ko.observable();
     self.degree = ko.observable();
+    self.faculty = ko.observable();
     self.role = ko.observable();
     self.requestType = ko.observable();
     self.requestStatus = ko.observable();
@@ -203,26 +209,28 @@ function UserViewModel(){
         if ($("#user-form").valid()) {
             var userData = {
                 action: "createUser",
-                firstname: self.firstname(),
-                lastname: self.lastname(),
+                id: self.id(),
+                firstName: self.firstname(),
+                lastName: self.lastname(),
                 email: self.email(),
-                role: self.role()
+                role: self.role(),
+                gradYear : self.gradYear(),
+                faculty: self.faculty(),
+                degree : self.degree()
             };
-
+            console.log(userData);
             $.ajax({
                 type: 'POST',
-                url: '../../controllers/UserController.php',
-                data: userData
+                url: '../controllers/UserController.php',
+                data: JSON.stringify(userData)
             }).done(function (data) {
-                // TODO : show success notification
                 hideAjaxLoader();
                 console.log(data);
             }).success(function (data) {
                 refreshTable();
                 self.selectedUser("");
-                $('input[type="checkbox"]', 'th:first-child').trigger('click');
                 self.closeUserModal();
-                showSuccessAlert("Successfully created user: " + data.FirstName + " " + data.LastName);
+                showSuccessAlert("Successfully created user: " + self.firstname() + " " + self.lastname());
                 console.log("success");
             }).fail(showError);
         }
@@ -236,25 +244,27 @@ function UserViewModel(){
         var userData = {
             action: "editUser",
             id: self.id(),
-            firstname: self.firstname(),
-            lastname: self.lastname(),
+            firstName: self.firstname(),
+            lastName: self.lastname(),
             email: self.email(),
-            role: self.role()
+            role: self.role(),
+            gradYear : self.gradYear(),
+            faculty: self.faculty(),
+            degree : self.degree()
         };
-
+        console.log(userData);
         if ($("#user-form").valid()) {
             $.ajax({
                 type: 'POST',
-                url: '../../controllers/UserController.php',
-                data: userData
+                url: '../controllers/UserController.php',
+                data: JSON.stringify(userData)
             }).done(function (data) {
                 hideAjaxLoader();
             }).success(function (data) {
                 refreshTable();
                 self.closeUserModal();
                 self.selectedUser("");
-                $('input[type="checkbox"]', 'th:first-child').trigger('click');
-                showSuccessAlert("Successfully edited user: " + data.FirstName + " " + data.LastName);
+                showSuccessAlert("Successfully edited user: " + self.firstname() + " " + self.lastname());
                 console.log("success");
             }).fail(showError);
         }
@@ -276,7 +286,7 @@ function UserViewModel(){
         if ($("#user-form").valid()) {
             $.ajax({
                 type: 'POST',
-                url: '../../controllers/UserController.php',
+                url: '../controllers/UserController.php',
                 data: userData
             }).done(function (data) {
                 hideAjaxLoader();

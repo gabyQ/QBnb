@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/qbnb.css">
 
     <link rel="shortcut icon" href="/qbnb/public_html/img/logo2.PNG">
-    <title>QBnB - My Bookings</title>
+    <title>QBnB - Explore</title>
 </head>
 
 <body>
@@ -71,7 +71,7 @@
                                 <span>District</span>
                             </label>
                         </div>
-                        <select data-bind="foreach: districts, value: district" name="districts"></select>
+                        <select data-bind="options: districts, value: district" name="districts"></select>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 filter-container">

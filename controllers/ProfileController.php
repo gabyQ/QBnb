@@ -64,9 +64,9 @@ if ($data['action'] == "updateUserDetails"){
 }
 
 if ($data['action'] == "deleteAccount"){
-    $query = "DELETE FROM USER WHERE ID = ?";
+    $query = "DELETE FROM USER WHERE email = ?";
     $stmt = $con->prepare($query);
-    $stmt->bind_param("s", $data['ID']);
+    $stmt->bind_param("s", $data['email']);
     $stmt->execute();
     $result = $stmt->get_result();
 
