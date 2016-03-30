@@ -15,47 +15,45 @@
     <link rel="stylesheet" type="text/css" href="../styles/qbnb.css">
 
     <link rel="shortcut icon" href="/qbnb/public_html/img/logo2.PNG">
-    <title>QBnB - Manage Users</title>
+    <title>QBnB - Property Manager</title>
 </head>
 
 <body>
 <?php
 include_once ("./Templates/navbar.php");
 ?>
-    <div class="container-fluid content-container">
-        <div class="row">
-            <div class="notification-wrapper">
-                <div class="alert alert-success" role="alert" style="display:none;"></div>
-            </div>
-            <div id="proeprty-table-container" class="table-container">
-                <table id="property-table" class="display table" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Grad Year</th>
-                        <th>Degree</th>
-                        <th>Role</th>
-                        <th>Created Date</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Grad Year</th>
-                        <th>Degree</th>
-                        <th>Role</th>
-                        <th>Created Date</th>
-                    </tr>
-                    </tfoot>
-                    <tbody></tbody>
-                </table>
-            </div>
+<div class="container-fluid content-container">
+    <div class="row">
+        <div class="notification-wrapper">
+            <div class="alert alert-success" role="alert" style="display:none;"></div>
+        </div>
+        <div id="property-table-container" class="table-container">
+            <table id="property-table" class="display table" cellspacing="0">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Address</th>
+                    <th>Rate</th>
+                    <th>District</th>
+                    <th>Building Type</th>
+                    <th>Num Bedrooms</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Address</th>
+                    <th>Rate</th>
+                    <th>District</th>
+                    <th>Building Type</th>
+                    <th>Num Bedrooms</th>
+                </tr>
+                </tfoot>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
+</div>
 </body>
+
+<script type="text/javascript" src="../scripts/MyPropertiesController.js"></script>

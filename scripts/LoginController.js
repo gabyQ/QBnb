@@ -14,7 +14,7 @@ function ViewModel() {
     function showLoginError(jqXHR) {
         hideAjaxLoader();
         var response = JSON.parse(jqXHR.responseText);
-        self.result(jqXHR.status + ': ' + jqXHR.responseText);
+        app.result(jqXHR.status + ': ' + jqXHR.responseText);
         showErrorAlert([response.error_description]);
     }
 
@@ -51,3 +51,33 @@ function ViewModel() {
 
 var app = new ViewModel();
 ko.applyBindings(app);
+
+function login() {
+    showAjaxLoader();
+    var data = {
+        action: "login",
+        email: app.loginEmail(),
+        passwordHash: app.loginPassword()
+    };
+    console.log(data);
+    if ($("#login-form").valid()) {
+        $.ajax({
+            contentType: "application/json; charset=utf-8",
+            type: 'POST',
+            url: '../../controllers/AccountController.php',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+            console.log(data);
+            if(data == "fail"){
+                console.log("error");
+                showErrorAlert("Invalid username or password.");
+            }
+            if(data == "success"){
+                window.location = "/qbnb/views/PropertyExplorer.php";
+            }
+        });
+    }
+    else {
+        hideAjaxLoader();
+    }
+}

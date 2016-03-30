@@ -21,9 +21,34 @@
     ?>
     <div class="container-fluid content-container">
         <div class="row">
-            <ul data-bind="foreach: bookings">
-                <li></li>
-            </ul>
+            <div class="notification-wrapper">
+                <div class="alert alert-success" role="alert" style="display:none;"></div>
+            </div>
+            <div id="property-table-container" class="table-container">
+                <table id="property-table" class="display table" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Address</th>
+                        <th>Rate</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Address</th>
+                        <th>Rate</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </tfoot>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>

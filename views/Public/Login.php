@@ -69,7 +69,7 @@
                 <span class="login-links"><a href="/qbnb/views/public/ForgotPassword.php">Forgot Password?</a></span>
                 <span class="login-links">|</span>
                 <span class="login-links"><a href="/qbnb/views/public/register.php">Create an account</a></span>
-                <button type="submit" id="login-button" class="btn big-blue-button" data-bind="click: login">Sign In</button>
+                <button type="submit" id="login-button" class="btn big-blue-button" onclick="login();">Sign In</button>
             </div>
         </form>
     </div>

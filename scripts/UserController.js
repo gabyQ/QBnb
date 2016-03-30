@@ -31,7 +31,7 @@ function initTable(){
             data: JSON.stringify({action: "viewAllUsers"})
         })
     ).done(function(data) {
-        var data = JSON.parse(data);
+        var d = JSON.parse(data);
         table = $("#user-table").DataTable({
             "dom": '<"toolbar">frt<"bottom"ilp><"clear">',
             'order': [[1, 'asc']],
@@ -56,7 +56,7 @@ function initTable(){
                     }
                 }
             ],
-            "aaData": data,
+            "aaData": d,
             "aoColumns": [{
                 "defaultContent": ""
             },

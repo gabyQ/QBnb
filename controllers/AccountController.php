@@ -7,8 +7,8 @@ try{
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
-echo file_get_contents('php://input');
 if ($data['action'] == "login"){
+
     $query = "SELECT ID FROM user WHERE email = ? AND passwordHash = ?";
     $stmt = $con->prepare($query);
     $stmt->bind_param("ss", $data['email'],  $data['passwordHash']);
@@ -32,12 +32,9 @@ if ($data['action'] == "login"){
         echo "fail";
     }
 }
-
 if ($data['action'] == "logout"){
     echo $data;
     $_SESSION['id']=null;
     session_destroy();
     echo "success";
 }
-
-?>

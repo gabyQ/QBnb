@@ -1,14 +1,3 @@
-
-
-function BookingViewModel(){
-    var self = this;
-    self.bookings = ko.observaleArray([]);
-
-    self.getAllBookings = function (){
-
-    }
-}
-
 var table;
 var validator;
 
@@ -20,9 +9,9 @@ function initTable(){
     $.when(
         $.ajax({
             contentType: "application/json; charset=utf-8",
-            url: "../controllers/BookingsController.php",
+            url: "../controllers/MyPropertiesController.php",
             type: "POST",
-            data: JSON.stringify({action: "viewBookings"})
+            data: JSON.stringify({action: "viewAllProperties"})
         })
     ).done(function(data) {
         var d = JSON.parse(data);
@@ -57,13 +46,13 @@ function initTable(){
                     "mDataProp": "nightlyRate",
                     "defaultContent": ""
                 }, {
-                    "mDataProp": "startDate",
+                    "mDataProp": "district",
                     "defaultContent": ""
                 }, {
-                    "mDataProp": "endDate",
+                    "mDataProp": "buildingType",
                     "defaultContent": ""
                 },{
-                    "mDataProp": "status",
+                    "mDataProp": "numBedrooms",
                     "defaultContent": ""
                 }]
         });

@@ -179,16 +179,13 @@ if ($data['action'] == "editUser"){
 }
 
 if ($data['action'] == "createUser"){
-    $query = "INSERT INTO User (ID, userName, firstName, lastName, email, gradYear, passwordHash, createdDate, facultyID, roleID, degreeID) VALUES(ID = ?, userName = ?,
+    $query = "INSERT INTO User (ID, userName, firstName, lastName, email, gradYear, passwordHash, createdDate) VALUES(ID = ?, userName = ?,
         firstName = ?,
         lastName = ?,
         email = ?,
         gradYear = ?,
         passwordHash = 'P@ssw0rd',
-        createdDate = ?,
-        facultyID = '8cee73ff-cb81-11e5-8c5c-101f74183244',
-        roleID ='3',
-        degreeID = '1')";
+        createdDate = ?)";
     $ID = (string)md5($data['email']);
     $stmt = $con->prepare($query);
     $stmt->bind_param('sssssss',
